@@ -1,1 +1,2 @@
-# .github
+Standard de développement Gestisoft 
+===================================
