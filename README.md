@@ -27,4 +27,19 @@ Avec AL-GO for Github il est exist un script qui permet de créer un environneme
 https://github.com/microsoft/AL-Go/blob/main/Scenarios/CreateOnlineDevEnv.md
 
 
+Branching 
+---------
 
+l'utilisation de Pull Request est recommandé lors d'un développement d'une nouvelle extension ou la modification d'une extension existante,
+
+le développeur ne doit pas commit le code directement dans main, il faut toujours ajouter **Code Reviewer** dans chaque Pull Request.
+
+il existe des regles dans Github qu'il faut activer dans chaque nouveau projet/Repo,
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/44379762/13f6eb98-8712-4a49-8f75-9c5d5dc5e007)
+
+
+Version d'extension 
+-------------------
+Avec AL-Go for Github il est possible de configurer la gestion de version générer par le build pipeline 
+il existe plusieurs stratégies proposé par l'outil 
