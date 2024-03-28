@@ -94,3 +94,62 @@ Dans le modéle **fast track** un conseiller technique doit copier la branhce **
 Pour chaque extension il existe un URL Blob Storage qui contient le dernier build disponible, il est partagé avec l'équipe BC dans le Teams **Business Central** dans le channel **Info Produit**
 
 ![image](https://github.com/gestisoft-DevProduits/.github/assets/44379762/46a26512-2546-4c9c-81af-fccdab87ee0c)
+Dépendance à une extension sur GitHub
+---------------------------------------
+Si l'extension (X) a une dépendance avec une autre extension (Y) sur un Repo GitHub différent, le Repo étranger peut être ajouté aux chemins de vérification des dépendances **appDependencyProbingPaths** dans le fichier de paramètres AL-Go. La dépendance doit également être ajoutée au fichier app.json en tant que dépendance.
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/a2ec106f-ea7e-473d-9517-68ffd1cb4a58)
+
+**appDependencyProbingPaths** doit avoir un tableau json avec la structure suivante :  
+**repo** : contient le nom de l'orgnanisation + le nom de Repo ("gestisoft-DevProduits/GoReport") ou ("Gestisoft-clients/Dandurand").
+
+**version**: on a deux choix :spécifier la version de Release de la dépendance ou utiliser (latest) pour récupérer la derniére version de Release de la dépendance.
+
+**release_status** : specifier le  type de Release de la dépendance. Les artefacts peuvent être téléchargés à partir release, prerelease, or a draft. **Pour nos projets on utilise Release**.
+
+**authTokenSecret**: pour télécharger les artefacts, un jeton d'accès est nécessaire. Dans ce cas, un secret doit être ajouté aux secrets de GitHub, notre secret est : **GHTOKENWORKFLOW**.
+
+**projects** : spécifie le projet dans un repository multi-projets. « * » signifie tous les projets.
+
+Documentation Technique des extensions 
+---------------------------------------
+
+AL Doc : L'outil ALDoc génère une documentation à partir d'informations symboliques et syntaxiques, de commentaires de code et de la structure globale de l'application en fonction du ou des fichiers .app d'entrée.
+
+On peut intégrer AL Doc dans github workflows pour automatiser la génération de documentation ou générer la documentation localement avec l'aide de DocFx.
+
+pour activer la documentation de code , il faut accéder à **Settings -> Pages -> Source -> Selectionner Github Actions**
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/704136a9-eeeb-4803-9d4d-4e84c3aa5c2b)
+
+nous constaterons que le workflow qui génère la documentation a été ajouté dans la section Actions :
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/b1e43faa-d9ee-4ce6-815e-3a0738459b58)
+
+C'est possible d'executer ce workflow manuellement pour générer la documentation technique .
+
+Pour automatiser ce workflow on peut l'integrer dans le CI/CD workflow  en ajoutant 2 paramètres au fichier AL-Go-Settings.json :
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/aafe12eb-ac79-4192-b0cd-3f2e2e8d3736)
+
+**deployToGitHubPages** = Détermine si le site de documentation de référence doit être déployé sur le GitHub pages pour le repository.
+
+**continuousDeployment** = Détermine si la documentation de référence sera déployée en continu dans le CI/CD workflow .
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/75ec2da4-4ffb-4d41-a7cc-61125726bbaf)
+
+on peut trouver notre documentation dans la section deploiement :
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/73a6c29b-a396-4f62-89ac-c03ba0fd651b)
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/7979cf73-3da8-4f1b-9c1e-c11182bc7981)
+
+Pour faire des changements pour la documentation , on utilisera le bloc de code xml, le workflow traitera ce code et il va l'ajouter à la documentation automatiquement :
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/5f80ce58-3a38-47ab-aed2-f76e0fa68113)
+
+Résultat : 
+
+![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/99725f46-848c-4495-84a1-144132417264)
+
+
