@@ -152,4 +152,47 @@ Résultat :
 
 ![image](https://github.com/gestisoft-DevProduits/.github/assets/143097318/99725f46-848c-4495-84a1-144132417264)
 
+Compiler un build 
+---------------------------------------
+### éviter la compilation de Runtime Packages
+"doNotPublishApps": true , va nous aider à éviter de compiler les runtime packages et générer le build correctement 
+Sans DoNotPublishApps : 
+![image](https://github.com/user-attachments/assets/2b260d5f-618d-41dc-a052-9f739a68f71b)
+Avec le DoNotPublishApps :
+![image](https://github.com/user-attachments/assets/0178d140-17d4-4997-8371-d05902cd0be2)
 
+### BuildMode + ConditionalSettings
+![image](https://github.com/user-attachments/assets/664ce5f4-9b0c-4500-80fd-12476eac21b4)
+BuildMode nous aide à générer multiple builds :
+![image](https://github.com/user-attachments/assets/746e4895-50d3-4543-a789-f5149221eaae)
+
+On peut combiner entre BuildMode et ConditionalSettings pour configurer N build avec N process diffèrent :
+
+Exemple :
+
+Build 1.N : un build normal sans aucun paramétrage.
+
+Build 1.N+1 : sera générer comme le build 1.N , avec l'artifact de Next Minor.
+
+Build 1.N+2 : sera générer comme le build 1.N , avec l'artifact de Next Major et déployer dans l'envrionnement XYZ.
+
+### incrementalBuilds
+un bon feature si on utilise des multiples apps dans un même repository car ce paramètre permet de spécifier si le repo va re compiler tout le repo (multiple apps dans le repo) ou juste l'un des apps qui ont été modifié dans le repo .
+Pour notre cas on n'a pas besoin de ce paramètre car on utilise une app par repo.
+
+Deploiement
+---------------------------------------
+
+### Deploiment d'une App avec le CICD
+Configuer le AAD , ajouter le AAD au tant que utilisateur dans BC environnement
+![image](https://github.com/user-attachments/assets/02433b3a-bd9e-4b64-99d3-9b7ea3b8ffe3)
+![image](https://github.com/user-attachments/assets/18811209-2655-41cb-b3b8-58a44fc48918)
+
+Configurer les secrets environnement :
+![image](https://github.com/user-attachments/assets/899f2c7b-f836-4348-81c2-43a59f6972c4)
+
+https://github.com/microsoft/AL-Go/blob/main/Scenarios/RegisterSandboxEnvironment.md
+
+Run CICD :
+
+![image](https://github.com/user-attachments/assets/fe2431f6-28b6-4468-a85a-90b752316569)
