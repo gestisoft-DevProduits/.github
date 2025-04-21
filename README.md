@@ -161,6 +161,17 @@ Sans DoNotPublishApps :
 Avec le DoNotPublishApps :
 ![image](https://github.com/user-attachments/assets/0178d140-17d4-4997-8371-d05902cd0be2)
 
+ il cherche les runtime ailleurs https://dynamicssmb2.pkgs.visualstudio.com/ , ce lien contient tout les symbols de Microsoft , Microsoft Symbols et les Symbols d'appsource apps :
+![image](https://github.com/user-attachments/assets/5f4e4c2c-d68c-4174-83cf-8eec34316bc2)
+sans le paramètre DoNotPublishApps , il va essayer publier les "Symbols" d'appsource dans le Container ce qui génére l'erreur :
+![image](https://github.com/user-attachments/assets/b2692054-601d-4a23-ae7a-bdcf2f98382e)
+mais avec le DoNotPublishApps , il bypass la publication des apps dans le containers et il généré le build avec les Symbols :
+![image](https://github.com/user-attachments/assets/f6ac684a-f5a7-4a11-9e49-f06b296428db)
+
+la même chose que la génération du Build manuelle , on a besoin juste d'avoir les symbols dans le workspace pour générer un build manuelle
+
+
+
 ### BuildMode + ConditionalSettings
 ![image](https://github.com/user-attachments/assets/664ce5f4-9b0c-4500-80fd-12476eac21b4)
 BuildMode nous aide à générer multiple builds :
@@ -196,6 +207,15 @@ https://github.com/microsoft/AL-Go/blob/main/Scenarios/RegisterSandboxEnvironmen
 Run CICD :
 
 ![image](https://github.com/user-attachments/assets/fe2431f6-28b6-4468-a85a-90b752316569)
+### Deploiment d'une App avec Dependance Appsource avec le CICD
+Deploiement d'une app avec une dependence Appsource fonctionne correctement : le DeliverTo deploie les dependences Appsource Scaptify par exemple et à  la fin il installe notre app 
+ le déploiement avec les workflows pour un app qui contient une dépendance avec un ou plusieurs ISV apps est très très très efficace car il install d'abord les dépendances ISV automatiquement (lastest version) , et à la fin il install notre app dans l'environnement , donc pour les nouveaux clients , pas besoin de se casser la tête de deployer manuellement chaque app , s'il y a une dépendance le workflow automatisera le processus de déploiement de dépendances et bien sûr si l'app ISV contient des dépendance , il va récupérer les dépendances de Scaptify par exemple et le workflow les installera : 
+
+Exemple : 
+![image](https://github.com/user-attachments/assets/c7eb2068-e79b-457a-bbd0-d373a0af4527)
+
+### Deploiment d'une App avec Dependance Interne avec le CICD
+pour récupérer les dépendances interne , on doit ajouter le paramétre GenerateDependencyArtifact : true pour que le workflow génère l'artifact est le déployer durant DeployTo
 
 //Deploiement par PR toujours en teste
 
@@ -210,4 +230,6 @@ un seul CICD qui sera activé par branche , si un nouveau CICD se declenche , l'
 ce paramètre nous permettra de planifier une date d'exécution d'un workflow (Update Sys Files (chaque 2 mois) , Create Release (Chaque 2 mois aprés le CICD) , CICD (Chaque 2 mois))
 
 ![image](https://github.com/user-attachments/assets/52c810fe-48fb-48f4-a4d0-0de7128eef77)
+
+
 
