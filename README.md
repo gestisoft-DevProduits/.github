@@ -196,3 +196,18 @@ https://github.com/microsoft/AL-Go/blob/main/Scenarios/RegisterSandboxEnvironmen
 Run CICD :
 
 ![image](https://github.com/user-attachments/assets/fe2431f6-28b6-4468-a85a-90b752316569)
+
+//Deploiement par PR toujours en teste
+
+Optimisation des workflows
+---------------------------------------
+### workflowConcurrency
+type de workflow qui sera déclencher par branche , si un nouveau workflow se déclenche l'ancien qui est en cours sera annulé , on aura besoin de ça pour minimiser les couts de consommation 
+![image](https://github.com/user-attachments/assets/0b522752-e5b3-4cd2-923e-a6f32215e4af)
+un seul CICD qui sera activé par branche , si un nouveau CICD se declenche , l'ancien sera automatiquement annulé
+
+#workflowSchedule
+ce paramètre nous permettra de planifier une date d'exécution d'un workflow (Update Sys Files (chaque 2 mois) , Create Release (Chaque 2 mois aprés le CICD) , CICD (Chaque 2 mois))
+
+![image](https://github.com/user-attachments/assets/52c810fe-48fb-48f4-a4d0-0de7128eef77)
+
