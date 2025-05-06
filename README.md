@@ -191,6 +191,13 @@ Build 1.N+2 : sera générer comme le build 1.N , avec l'artifact de Next Major 
 un bon feature si on utilise des multiples apps dans un même repository car ce paramètre permet de spécifier si le repo va re compiler tout le repo (multiple apps dans le repo) ou juste l'un des apps qui ont été modifié dans le repo .
 Pour notre cas on n'a pas besoin de ce paramètre car on utilise une app par repo.
 
+### Automatiser la création de Release
+
+pour automatiser le Create Release aprés chaque CICD , on doit rajouter ce script dans notre template
+
+![image](https://github.com/user-attachments/assets/542c9ee7-b008-4672-80dc-e5c22a3e63ba)
+
+
 Deploiement
 ---------------------------------------
 
@@ -217,6 +224,14 @@ Exemple :
 ### Deploiment d'une App avec Dependance Interne avec le CICD
 pour récupérer les dépendances interne , on doit ajouter le paramétre GenerateDependencyArtifact : true pour que le workflow génère l'artifact est le déployer durant DeployTo
 
+excludeEnvironments : pour éviter de déployer dans un environnement spécifique durant le CICD
+
+###Planification de deploiement 
+
+on doit ajouter ce fichier dans notre template pour automatiser les deploiements dans la Prod , Le nom de la production doit être modifié en fonction du nom de l'environnement de production du client.
+
+![image](https://github.com/user-attachments/assets/0ec6360c-0be8-4d7d-ac19-42e339d05ac7)
+
 //Deploiement par PR toujours en teste
 
 Optimisation des workflows
@@ -231,5 +246,13 @@ ce paramètre nous permettra de planifier une date d'exécution d'un workflow (U
 
 ![image](https://github.com/user-attachments/assets/52c810fe-48fb-48f4-a4d0-0de7128eef77)
 
+Tester l'app avec Page Scripting
+---------------------------------------
+### pageScriptingTests
 
+en utilisant les pages scripts qu'on a généré de BC et les ajouter dans dossier dans le Repo  et en ajoutant ce paramètre dans Settings.json , le CICD pourra déclencher les testes de page script.
+
+NB : à ne pas utiliser le DoNotPublishApps avec le pageScriptingTests , car le DoNOtPublishApps permet de bypasser l'étape de publication dans l'environnement Docker de CICD ce qui cause le page script de ne pas trouver les ressources nécessaire pour faire les testes Issue : https://github.com/microsoft/AL-Go/discussions/1694
+
+![image](https://github.com/user-attachments/assets/32fa246d-98c7-4939-8f3d-661c34d6220c)
 
