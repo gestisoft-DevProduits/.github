@@ -232,7 +232,15 @@ on doit ajouter ce fichier dans notre template pour automatiser les deploiements
 
 ![image](https://github.com/user-attachments/assets/0ec6360c-0be8-4d7d-ac19-42e339d05ac7)
 
-//Deploiement par PR toujours en teste
+### Deploiment avec PR
+Pour deployer avec un PR , on doit d'abord créer un PR , laisser le Pull request build termine la génération de build de  pull request ,
+![image](https://github.com/user-attachments/assets/a2d5bb69-0d68-42a5-93b2-3ac149e50a0f)
+
+![image](https://github.com/user-attachments/assets/a78fe247-11d7-44b7-899b-662be06ffcbc)
+![image](https://github.com/user-attachments/assets/cf952f00-f54f-4506-a516-9f54f80d1074)
+ aprés dans l'action Publish to Environnement , on doit ajouter les informations suivantes PR_#PRNUMBER + nom de sandbox qu'on a configuré (garder toujours la branche à "main" pas besoin de selectionner la branche source de PR):
+![image](https://github.com/user-attachments/assets/6e41820a-f702-4119-8a77-e81fd37ff1ee)
+
 
 Optimisation des workflows
 ---------------------------------------
